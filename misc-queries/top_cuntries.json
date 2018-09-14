@@ -1,0 +1,49 @@
+get geonames5/doc/_search?explain
+{
+  "_source": {
+    "includes": ["Name", "CountryName", "Admin1Name", "Admin2Name", "tags", "Population", "FullNames" ]
+  },
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "more_like_this": {
+            "fields": [
+              "FullNames"
+            ],
+            "like": ["Rome"],
+            "min_term_freq": 1,
+            "min_doc_freq": 1,
+            "max_query_terms": 25
+          }
+        }
+      ],
+      "filter": [
+        {"terms": {"tags": ["city"]}},
+        {"range": {"Population": {"gte": 0}}}
+      ]
+    }
+  },
+  "aggs": {
+    "top_sites": {
+      "terms": {
+        "field": "CountryName.raw",
+        "order": {
+          "top_hit": "desc"
+        }
+      },
+      "aggs": {
+        "top_country_hits": {
+          "top_hits": {}
+        },
+        "top_hit" : {
+          "max": {
+            "script": {
+              "source": "_score"
+            }
+          }
+        }
+      }
+    }
+  }
+}

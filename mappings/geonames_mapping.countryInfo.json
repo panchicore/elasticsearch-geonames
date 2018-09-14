@@ -1,0 +1,85 @@
+{
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "@version": {
+          "type": "integer"
+        },
+        "Area": {
+          "type": "integer"
+        },
+        "Capital": {
+          "type": "keyword",
+          "fields": {
+            "text": {
+              "type": "text"
+            }
+          }
+        },
+        "Continent": {
+          "type": "keyword"
+          }
+        },
+        "Country": {
+          "type": "keyword",
+          "fields": {
+            "text": {
+              "type": "text"
+            }
+          }
+        },
+        "CurrencyCode": {
+          "type": "keyword"
+        },
+        "CurrencyName": {
+          "type": "keyword"
+        },
+        "EquivalentFipsCode": {
+          "type": "keyword"
+        },
+        "GeonamesId": {
+          "type": "keyword"
+        },
+        "ISO": {
+          "type": "keyword"
+        },
+        "ISO3": {
+          "type": "keyword"
+        },
+        "ISONumeric": {
+          "type": "integer"
+        },
+        "Languages": {
+          "type": "keyword"
+        },
+        "NeighboursISO": {
+          "type": "keyword"
+        },
+        "Phone": {
+          "type": "keyword"
+        },
+        "Population": {
+          "type": "integer"
+        },
+        "PostalCodeFormat": {
+          "type": "keyword"
+        },
+        "PostalCodeRegex": {
+          "type": "keyword"
+        },
+        "fips": {
+          "type": "keyword"
+        },
+        "tags": {
+          "type": "keyword"
+        },
+        "tld": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

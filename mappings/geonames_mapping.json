@@ -1,0 +1,188 @@
+{
+  "settings": {
+    "refresh_interval" : "60s",
+    "number_of_shards": "1",
+    "number_of_replicas": "1",
+    "index.mapping.total_fields.limit": 100,
+    "index.mapping.depth.limit": 5,
+    "analysis": {
+      "filter": {
+        "edge_ngram_filter": {
+          "type": "edge_ngram",
+          "min_gram": 3,
+          "max_gram": 20
+        }
+      },
+      "analyzer": {
+        "suggester": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "edge_ngram_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+      "_doc": {
+        "properties": {
+          "ASCIIAdmin1Name": {
+            "type": "text"
+          },
+          "ASCIIAdmin2Name": {
+            "type": "text"
+          },
+          "ASCIIName": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              },
+              "suggester": {
+                "type": "text",
+                "analyzer": "suggester"
+              }
+            }
+          },
+          "Admin1Code": {
+            "type": "keyword"
+          },
+          "Admin1Name": {
+            "type": "text"
+          },
+          "Admin2Code": {
+            "type": "keyword"
+          },
+          "Admin2Name": {
+            "type": "text"
+          },
+          "Admin3Code": {
+            "type": "keyword"
+          },
+          "Admin4Code": {
+            "type": "keyword"
+          },
+          "AdminCodeHash": {
+            "type": "keyword"
+          },
+          "AlternateNames": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "CountryCode": {
+            "type": "keyword"
+          },
+          "CountryCodeAlternatives": {
+            "type": "keyword"
+          },
+          "CountryName": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              },
+              "suggester": {
+                "type": "text",
+                "analyzer": "suggester"
+              }
+            }
+          },
+          "DEM": {
+            "type": "keyword"
+          },
+          "Elevation": {
+            "type": "long"
+          },
+          "Feature": {
+            "type": "keyword"
+          },
+          "FeatureClass": {
+            "type": "keyword"
+          },
+          "FeatureCode": {
+            "type": "keyword"
+          },
+          "FeatureName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "FeatureNames": {
+            "type": "text"
+          },
+          "FullNames": {
+            "type": "text",
+            "analyzer": "suggester"
+          },
+          "GeonamesId": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ModificationDate": {
+            "type": "date",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+          },
+          "Name": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              },
+              "suggester": {
+                "type": "text",
+                "analyzer": "suggester"
+              }
+            }
+          },
+          "Population": {
+            "type": "long"
+          },
+          "Timezone": {
+            "type": "keyword"
+          },
+          "geom_location": {
+            "type": "geo_point"
+          },
+          "geom_point": {
+            "type": "geo_shape",
+            "precision": "10.0m",
+            "points_only": true
+          },
+          "geom_polygon": {
+            "type": "geo_shape",
+            "precision": "100.0m"
+          },
+          "geom_polygon_type": {
+            "type": "keyword"
+          },
+          "tags": {
+            "type": "keyword"
+          },
+          "translation": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    }
+}
